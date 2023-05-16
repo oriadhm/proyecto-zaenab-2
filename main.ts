@@ -14,27 +14,32 @@ input.onButtonPressed(Button.A, function () {
     }
 })
 input.onButtonPressed(Button.AB, function () {
+    basic.showString("" + (pins.analogReadPin(AnalogPin.P2)))
+    basic.pause(2000)
+    basic.clearScreen()
+})
+input.onButtonPressed(Button.B, function () {
     for (let index = 0; index < 4; index++) {
         pins.servoWritePin(AnalogPin.P4, 0)
         basic.pause(2000)
         pins.servoWritePin(AnalogPin.P4, 90)
         basic.pause(2000)
     }
-})
-input.onButtonPressed(Button.B, function () {
-    basic.showString("" + (pins.analogReadPin(AnalogPin.P2)))
-    basic.pause(2000)
-    basic.clearScreen()
+    basic.showString("" + input.temperature() + "ºC")
 })
 led.enable(false)
 basic.pause(100)
 led.enable(true)
 basic.showIcon(IconNames.Heart)
 basic.pause(2000)
+pins.servoWritePin(AnalogPin.P4, 90)
+pins.servoWritePin(AnalogPin.P3, 0)
 for (let index = 0; index < 4; index++) {
     pins.servoWritePin(AnalogPin.P4, 0)
+    pins.servoWritePin(AnalogPin.P3, 90)
     basic.pause(2000)
     pins.servoWritePin(AnalogPin.P4, 90)
+    pins.servoWritePin(AnalogPin.P3, 0)
     basic.pause(2000)
 }
 basic.showString("" + input.temperature() + "ºC")
